@@ -1,5 +1,6 @@
 identity:
   name: mysql_query
+  author: Viking Studio
   label:
     en_US: MySQL Query
     zh_Hans: MySQL查询
@@ -7,80 +8,123 @@ identity:
     en_US: Execute MySQL query and return paginated results
     zh_Hans: 执行MySQL查询，并分页返回结果
 
-inputs:
-  host:
+description:
+  human:
+    en_US: Execute MySQL query with pagination and connection pool optimization
+    zh_Hans: 执行MySQL查询，支持分页和连接池优化
+  llm: This tool executes MySQL SELECT queries and returns paginated results. It supports connection pooling for better performance and has protection against SQL injection.
+
+parameters:
+  - name: host
     type: string
     required: true
     label:
       en_US: Host
       zh_Hans: 主机地址
-  port:
+    human_description:
+      en_US: MySQL server host address
+      zh_Hans: MySQL服务器主机地址
+    llm_description: The hostname or IP address of the MySQL server
+    form: form
+  - name: port
     type: number
     required: true
     label:
       en_US: Port
       zh_Hans: 端口
-  user:
+    human_description:
+      en_US: MySQL server port (usually 3306)
+      zh_Hans: MySQL服务器端口（通常为3306）
+    llm_description: The port number of the MySQL server (default is 3306)
+    form: form
+  - name: user
     type: string
     required: true
     label:
       en_US: Username
       zh_Hans: 用户名
-  password:
+    human_description:
+      en_US: MySQL username
+      zh_Hans: MySQL用户名
+    llm_description: The username for MySQL authentication
+    form: form
+  - name: password
     type: string
     required: true
     label:
       en_US: Password
       zh_Hans: 密码
-  database:
+    human_description:
+      en_US: MySQL password
+      zh_Hans: MySQL密码
+    llm_description: The password for MySQL authentication
+    form: form
+  - name: database
     type: string
     required: true
     label:
       en_US: Database
       zh_Hans: 数据库名
-  query:
+    human_description:
+      en_US: MySQL database name
+      zh_Hans: MySQL数据库名称
+    llm_description: The name of the database to connect to
+    form: form
+  - name: query
     type: string
     required: true
     label:
       en_US: SQL Query
       zh_Hans: SQL查询语句
-  page:
+    human_description:
+      en_US: SQL SELECT query to execute
+      zh_Hans: 要执行的SQL SELECT查询语句
+    llm_description: The SQL SELECT query to execute. Only SELECT queries are supported for security reasons.
+    form: llm
+  - name: page
     type: number
     required: false
     default: 1
     label:
       en_US: Page
       zh_Hans: 页码
-  pagesize:
+    human_description:
+      en_US: Page number (starting from 1)
+      zh_Hans: 页码（从1开始）
+    llm_description: The page number for pagination (starting from 1)
+    form: llm
+  - name: pagesize
     type: number
     required: false
     default: 10
     label:
       en_US: Page Size
       zh_Hans: 每页数量
-
-outputs:
-  data:
-    type: array
-    description:
-      en_US: Query results
-      zh_Hans: 查询结果
-  total:
-    type: number
-    description:
-      en_US: Total number of results
-      zh_Hans: 结果总数
-  page:
-    type: number
-    description:
-      en_US: Current page number
-      zh_Hans: 当前页码
-  pagesize:
-    type: number
-    description:
-      en_US: Number of items per page
-      zh_Hans: 每页数量
+    human_description:
+      en_US: Number of records per page (max 100)
+      zh_Hans: 每页记录数（最大100）
+    llm_description: The number of records per page (limited to 100 for performance reasons)
+    form: llm
 
 extra:
   python:
-    source: tools/mysql_query.py
+    source: tools/mysql-query.py
+
+output_schema:
+  type: object
+  properties:
+    data:
+      type: array
+      description: Query results as an array of objects
+    total:
+      type: number
+      description: Total number of matching results
+    page:
+      type: number
+      description: Current page number
+    pagesize:
+      type: number
+      description: Number of items per page
+    error:
+      type: string
+      description: Error message if query failed
