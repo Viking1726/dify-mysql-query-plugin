@@ -1,0 +1,17 @@
+identity:
+  author: viking
+  name: mysql-query
+  label:
+    en_US: mysql-query
+    zh_Hans: mysql-query
+    pt_BR: mysql-query
+  description:
+    en_US: MySQL查询
+    zh_Hans: MySQL查询
+    pt_BR: MySQL查询
+  icon: icon.svg
+tools:
+  - tools/mysql-query.yaml
+extra:
+  python:
+    source: provider/mysql-query.py

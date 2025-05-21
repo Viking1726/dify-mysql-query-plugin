@@ -1,0 +1,50 @@
+version: 0.0.1
+type: plugin
+author: viking
+name: mysql-query
+label:
+  en_US: MySQL Query
+  zh_Hans: MySQL查询
+description:
+  en_US: Execute MySQL queries with pagination
+  zh_Hans: 执行MySQL查询，支持分页
+icon: icon.svg
+resource:
+  memory: 268435456
+  permission:
+    tool:
+      enabled: true
+    model:
+      enabled: false
+      llm: false
+      text_embedding: false
+      rerank: false
+      tts: false
+      speech2text: false
+      moderation: false
+    node:
+      enabled: false
+    endpoint:
+      enabled: false
+    app:
+      enabled: false
+    storage:
+      enabled: true
+      size: 10485760
+plugins:
+  tools:
+    - provider/mysql-query.yaml
+meta:
+  version: 0.0.1
+  arch:
+    - amd64
+    - arm64
+  runner:
+    language: python
+    version: "3.12"
+    entrypoint: main
+  minimum_dify_version: null
+created_at: 2025-05-21T14:16:19.366624+08:00
+privacy: PRIVACY.md
+repo: https://github.com/Viking1726/dify-mysql-query-plugin
+verified: false

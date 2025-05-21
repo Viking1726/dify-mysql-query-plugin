@@ -1,0 +1,86 @@
+identity:
+  name: mysql_query
+  label:
+    en_US: MySQL Query
+    zh_Hans: MySQL查询
+  description:
+    en_US: Execute MySQL query and return paginated results
+    zh_Hans: 执行MySQL查询，并分页返回结果
+
+inputs:
+  host:
+    type: string
+    required: true
+    label:
+      en_US: Host
+      zh_Hans: 主机地址
+  port:
+    type: number
+    required: true
+    label:
+      en_US: Port
+      zh_Hans: 端口
+  user:
+    type: string
+    required: true
+    label:
+      en_US: Username
+      zh_Hans: 用户名
+  password:
+    type: string
+    required: true
+    label:
+      en_US: Password
+      zh_Hans: 密码
+  database:
+    type: string
+    required: true
+    label:
+      en_US: Database
+      zh_Hans: 数据库名
+  query:
+    type: string
+    required: true
+    label:
+      en_US: SQL Query
+      zh_Hans: SQL查询语句
+  page:
+    type: number
+    required: false
+    default: 1
+    label:
+      en_US: Page
+      zh_Hans: 页码
+  pagesize:
+    type: number
+    required: false
+    default: 10
+    label:
+      en_US: Page Size
+      zh_Hans: 每页数量
+
+outputs:
+  data:
+    type: array
+    description:
+      en_US: Query results
+      zh_Hans: 查询结果
+  total:
+    type: number
+    description:
+      en_US: Total number of results
+      zh_Hans: 结果总数
+  page:
+    type: number
+    description:
+      en_US: Current page number
+      zh_Hans: 当前页码
+  pagesize:
+    type: number
+    description:
+      en_US: Number of items per page
+      zh_Hans: 每页数量
+
+extra:
+  python:
+    source: tools/mysql_query.py
