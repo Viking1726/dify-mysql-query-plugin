@@ -1,6 +1,6 @@
 ## mysql-query
 
-**Author:** viking
+**Author:** Viking1726
 **Version:** 0.0.1
 **Type:** tool
 

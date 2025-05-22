@@ -1,6 +1,6 @@
 version: 0.0.1
 type: plugin
-author: viking
+author: Viking1726
 name: mysql-query
 label:
   en_US: MySQL Query
@@ -10,7 +10,7 @@ description:
   zh_Hans: 执行MySQL查询，支持分页
 icon: icon.svg
 resource:
-  memory: 268435456
+  memory: 1048576
   permission:
     tool:
       enabled: true
@@ -30,7 +30,7 @@ resource:
       enabled: false
     storage:
       enabled: true
-      size: 10485760
+      size: 1048576
 plugins:
   tools:
     - provider/mysql-query.yaml
